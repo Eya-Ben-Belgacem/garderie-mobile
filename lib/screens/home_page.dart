@@ -1,19 +1,41 @@
 import 'package:flutter/material.dart';
 
+// Une activité de la garderie
+class Activite {
+  const Activite({
+    required this.id,
+    required this.titre,
+    required this.description,
+    required this.icone,
+  });
+
+  final int id;
+  final String titre;
+  final String description;
+  final String icone; // un emoji
+}
+
+// Liste statique déclarée directement dans le code
+const List<Activite> activites = [
+  Activite(id: 1, titre: 'Dessin et coloriage', description: 'Développement de la créativité', icone: '🎨'),
+  Activite(id: 2, titre: 'Jeux éducatifs', description: 'Apprentissage par le jeu', icone: '🧩'),
+  Activite(id: 3, titre: 'Musique et chansons', description: 'Éveil musical des enfants', icone: '🎵'),
+  Activite(id: 4, titre: 'Lecture de contes', description: 'Découverte des histoires', icone: '📚'),
+  Activite(id: 5, titre: 'Activités sportives', description: 'Développement de la motricité', icone: '⚽'),
+];
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // 1. AppBar avec le titre
       appBar: AppBar(
         title: const Text('Ma Garderie'),
         backgroundColor: const Color(0xFF5B9BE8),
         foregroundColor: Colors.white,
       ),
 
-      // 2. Drawer : menu latéral avec 3 éléments
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -44,14 +66,27 @@ class HomePage extends StatelessWidget {
         ),
       ),
 
-      // 3. Floating Action Button avec l'icône +
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
 
-      // 4. Espace destiné à la liste d'activités
-      body: const Center(child: Text('Liste des activités ici')),
+      // La liste des activités
+      body: ListView.builder(
+        padding: const EdgeInsets.all(12),
+        itemCount: activites.length,
+        itemBuilder: (context, index) {
+          final a = activites[index];
+          return Card(
+            child: ListTile(
+              leading: Text(a.icone, style: const TextStyle(fontSize: 32)),
+              title: Text(a.titre),
+              subtitle: Text(a.description),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+          );
+        },
+      ),
     );
   }
 }
