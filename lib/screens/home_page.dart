@@ -24,8 +24,25 @@ const List<Activite> activites = [
   Activite(id: 5, titre: 'Activités sportives', description: 'Développement de la motricité', icone: '⚽'),
 ];
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0; // entrée du Drawer sélectionnée (0 = Accueil)
+
+  final List<String> _menu = ['Accueil', 'Activités', 'À propos'];
+  final List<IconData> _menuIcons = [Icons.home, Icons.local_activity, Icons.info];
+
+  // Affiche un message en bas de l'écran
+  void _showMessage(String message) {
+    ScaffoldMessenger.of(context)
+      ..clearSnackBars()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,31 +64,26 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 24),
               ),
             ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Accueil'),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.local_activity),
-              title: const Text('Activités'),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text('À propos'),
-              onTap: () => Navigator.pop(context),
-            ),
+            for (int i = 0; i < _menu.length; i++)
+              ListTile(
+                leading: Icon(_menuIcons[i]),
+                title: Text(_menu[i]),
+                selected: _selectedIndex == i,
+                onTap: () {
+                  setState(() => _selectedIndex = i);
+                  Navigator.pop(context);
+                  _showMessage(_menu[i]);
+                },
+              ),
           ],
         ),
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _showMessage('Nouvelle activité'),
         child: const Icon(Icons.add),
       ),
 
-      // La liste des activités
       body: ListView.builder(
         padding: const EdgeInsets.all(12),
         itemCount: activites.length,
@@ -83,6 +95,7 @@ class HomePage extends StatelessWidget {
               title: Text(a.titre),
               subtitle: Text(a.description),
               trailing: const Icon(Icons.chevron_right),
+              onTap: () => _showMessage(a.titre),
             ),
           );
         },
