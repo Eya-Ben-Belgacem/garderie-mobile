@@ -12,7 +12,10 @@ class MaGarderieApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ma Garderie',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorSchemeSeed: const Color(0xFF5B9BE8)),
+      theme: ThemeData(
+        colorSchemeSeed: const Color(0xFF5B9BE8),
+        useMaterial3: true,
+      ),
       home: const SplashScreen(),
     );
   }
