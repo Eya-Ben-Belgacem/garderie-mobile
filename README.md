@@ -39,22 +39,14 @@ assets/images/splash.png       # image d'accueil
 
 ## Captures d'écran
 
-### Splash Screen
-![Splash Screen](screenshots/splash.jpeg)
-
-### Page principale avec la liste des activités
-![Page principale](screenshots/home.jpeg)
-
-### Drawer ouvert
-![Drawer](screenshots/drawer.jpeg)
-
-### Message affiché après une interaction
-![Interaction](screenshots/interaction.jpeg)
-
-## Organisation Git
-
-Chaque étape a été réalisée dans une branche séparée, suivie d'un commit puis d'une fusion dans `main` :
-`feature/init-project`, `feature/splash-screen`, `feature/home-page`, `feature/list-view`, `feature/interactions`, `docs/readme`.
+<table>
+  <tr>
+    <td align="center"><img src="screenshots/splash.jpeg" width="200" alt="Splash Screen"><br><b>Splash Screen</b></td>
+    <td align="center"><img src="screenshots/home.jpeg" width="200" alt="Page principale"><br><b>Page principale<br>avec la liste des activités</b></td>
+    <td align="center"><img src="screenshots/drawer.jpeg" width="200" alt="Drawer ouvert"><br><b>Drawer ouvert</b></td>
+    <td align="center"><img src="screenshots/interaction.jpeg" width="200" alt="Message après interaction"><br><b>Message affiché<br>après une interaction</b></td>
+  </tr>
+</table>
 
 ## Auteur
 
